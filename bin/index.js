@@ -95,13 +95,15 @@ function deleteSSL(domain) {
         child_process.execSync(`sudo certbot delete --cert-name ${domain} --non-interactive`, { encoding: 'utf-8' })
         console.log(chalk.yellow('ssl deleted !!'))
     }
-    child_process.execSync(`sudo rm /etc/nginx/conf.d/${domain}.conf`, { encoding: 'utf-8' })
+    if (existsSync(`/etc/nginx/conf.d/${domain}.conf`)) {
+        child_process.execSync(`sudo rm /etc/nginx/conf.d/${domain}.conf`, { encoding: 'utf-8' })
+    }
 }
 
 async function createSSL({ domain, port, path, email }) {
     deleteSSL(domain)
     child_process.execSync(`sudo chmod 777 /etc/nginx/conf.d/`, { encoding: 'utf-8' })
-    writeFileSync(`/etc/nginx/conf.d/${domain}.conf`, nginxHttpConfig(domain))  
+    writeFileSync(`/etc/nginx/conf.d/${domain}.conf`, nginxHttpConfig(domain))
     if(!testNginx())return
     console.log(chalk.yellow('http config created !!'))
     restartNginx();
@@ -115,7 +117,7 @@ async function createSSL({ domain, port, path, email }) {
 }
 
 function help() {
-    //use exemple 
+    //use exemple
     console.log(chalk.green('nginx-ssl -d exemple.com -p 3000 -e exemple@exemple.com'))
     console.log(chalk.green('nginx-ssl -d exemple.com -f /var/www/html/ -e exemple@exemple.com'))
     console.log(chalk.green('Usage:'))
@@ -164,7 +166,7 @@ async function Main() {
             help()
             return
         }
-        
+
         console.log(chalk.green(boxen(chalk.white(`creating ssl for domain ${JSON.stringify({ domain, port, path, email }, null, 2)}`), { padding: 1 })))
         await createSSL({ domain, port, path, email })
     }
