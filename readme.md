@@ -1,4 +1,4 @@
-# nginx-ssl
+# nginx-ssl-cli
 
 This is a CLI tool to automate the creation of SSL certificates using Certbot and OpenSSL. It also configures the proxy settings in Nginx.
 
@@ -15,7 +15,9 @@ Please make sure that Nginx and Certbot are properly installed and configured be
 
 ## Installation
 
-...
+```sh
+    npm install -g nginx-ssl-cli
+```
 
 ## Usage
 
@@ -34,11 +36,11 @@ This command will create an SSL certificate for the domain `example.com` on port
 
 proxy
 ```sh
-    nginx-ssl -d exemple.com -p 3000 -e exemple@exemple.com
+    nginx-ssl-cli -d exemple.com -p 3000 -e exemple@exemple.com
 ```
-or static files 
+or static files
 ```sh
-    nginx-ssl -d exemple.com -f /var/www/html -e exemple@exemple.com
+    nginx-ssl-cli -d exemple.com -f /var/www/html -e exemple@exemple.com
 ```
 
 ## Support

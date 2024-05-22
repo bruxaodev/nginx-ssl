@@ -1,5 +1,5 @@
 {
-  "name": "nginx-ssl",
+  "name": "nginx-ssl-cli",
   "version": "1.0.0",
   "type": "module",
   "main": "./bin/index.js",
@@ -19,6 +19,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/bruxaodev/nginx-ssl.git"
+    "url": "git+https://github.com/bruxaodev/nginx-ssl-cli.git"
   }
 }
