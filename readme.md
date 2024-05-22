@@ -36,11 +36,11 @@ This command will create an SSL certificate for the domain `example.com` on port
 
 proxy
 ```sh
-    nginx-ssl-cli -d exemple.com -p 3000 -e exemple@exemple.com
+    nginx-ssl -d exemple.com -p 3000 -e exemple@exemple.com
 ```
 or static files
 ```sh
-    nginx-ssl-cli -d exemple.com -f /var/www/html -e exemple@exemple.com
+    nginx-ssl -d exemple.com -f /var/www/html -e exemple@exemple.com
 ```
 
 ## Support
